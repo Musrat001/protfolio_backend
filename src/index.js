@@ -6,7 +6,11 @@ const { app } = require("./app.js");
 const express = require("express");
 const cors = require("cors");
 
-app.use(cors());
+const cors = require("cors");
+
+app.use(cors({
+    origin: "*"
+}));
 
 dotenv.config({
     path: "./.env"
