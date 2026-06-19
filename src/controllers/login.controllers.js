@@ -14,6 +14,8 @@ exports.loginLogic = async (req, res) => {
     });
     console.log(user);
 
-    res.status(202).send(user);
+    res.status(202).send({
+        message: "You logged in successfully!"
+    });
 
 }

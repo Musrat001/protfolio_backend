@@ -11,5 +11,7 @@ exports.createUser = async (req, res) => {
         password: req.body.password
     }
     const creadtedUser = await User.create(createdUserObject);
-    res.status(201).send(creadtedUser)
+    res.status(201).send({
+        message: "User Registered succesfully!"
+    })
 }
