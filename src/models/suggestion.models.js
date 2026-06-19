@@ -9,7 +9,7 @@ const suggectionScema = new mongoose.Schema({
         type: String,
         required: true
     },
-    siggestion: {
+    suggestion: {
         type: String,
         required: true
     }
