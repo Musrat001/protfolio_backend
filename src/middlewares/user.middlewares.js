@@ -42,27 +42,27 @@ const verifyLoginUserBody = async (req, res, next) => {
     const username = req.body.username;
 
     if (!username) {
-        res.status(402).send({
+        res.status(400).send({
             message: "Please provide username"
         })
     }
 
     const user = await User.findOne({ username });
     if (!user) {
-        return res.status(402).send({
+        return res.status(400).send({
             message: `user ${username} is not registered yet`
         })
     }
 
     const password = req.body.password;
     if(!password){
-        return res.status(402).send({
+        return res.status(400).send({
             message: "Please provide password"
         })
     }
 
     if (password != user.password) {
-        return res.status(402).send({
+        return res.status(400).send({
             message: "Oops! Password is Wrong"
         })
     }
