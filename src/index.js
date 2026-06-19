@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors());
 
 dotenv.config({
-    path: "../.env"
+    path: "./.env"
 });
 app.use(express.json());
 
