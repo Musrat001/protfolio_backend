@@ -42,7 +42,7 @@ const verifyLoginUserBody = async (req, res, next) => {
     const username = req.body.username;
 
     if (!username) {
-        res.status(400).send({
+        return res.status(400).send({
             message: "Please provide username"
         })
     }
