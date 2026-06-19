@@ -4,7 +4,7 @@ const verifyUserRequestbody = (req, res, next) => {
     const fullName = req.body.fullName;
 
     if (!fullName) {
-        return res.status(401).send({
+        return res.status(400).send({
             message: "Please provide the name"
         })
     }
@@ -12,7 +12,7 @@ const verifyUserRequestbody = (req, res, next) => {
     const email = req.body.email;
 
     if (!email) {
-        return res.status(401).send({
+        return res.status(400).send({
             message: "Please  provide email"
         })
     }
@@ -20,7 +20,7 @@ const verifyUserRequestbody = (req, res, next) => {
     const username = req.body.username;
 
     if (!username) {
-        return res.status(401).send({
+        return res.status(400).send({
             message: "Please provide username"
         })
     }
@@ -28,7 +28,7 @@ const verifyUserRequestbody = (req, res, next) => {
     const password = req.body.password;
 
     if (!password) {
-        return res.status(401).send({
+        return res.status(400).send({
             message: "password is required"
         })
     }
@@ -77,7 +77,7 @@ const verifyLoginBeforeSuggection = async(req, res, next)=>{
     const name = req.body.name;
 
     if(!name){
-        return res.status(402).send({
+        return res.status(400).send({
             message: "Please enter name"
         })
     }
@@ -85,7 +85,7 @@ const verifyLoginBeforeSuggection = async(req, res, next)=>{
     const username = req.body.username;
 
     if(!username){
-        return res.status(402).send({
+        return res.status(400).send({
             message: "Please provide username"
         })
     }
@@ -93,7 +93,7 @@ const verifyLoginBeforeSuggection = async(req, res, next)=>{
     const user = await User.findOne({username});
 
     if(!user){
-        return res.status(403).send({
+        return res.status(400).send({
             message: `User with username ${username} is not registered yet!`
         })
     }
@@ -101,7 +101,7 @@ const verifyLoginBeforeSuggection = async(req, res, next)=>{
     const suggestion = req.body.suggestion;
 
     if(!suggestion){
-        return res.status(402).send({
+        return res.status(400).send({
             message: "Suggestion Box cannot be Empty!"
         })
     }
