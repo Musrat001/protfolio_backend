@@ -55,7 +55,7 @@ const verifyLoginUserBody = async (req, res, next) => {
     }
 
     const password = req.body.password;
-    if(!password){
+    if (!password) {
         return res.status(400).send({
             message: "Please provide password"
         });
@@ -73,34 +73,34 @@ const verifyLoginUserBody = async (req, res, next) => {
 }
 
 
-const verifyLoginBeforeSuggection = async(req, res, next)=>{
+const verifyLoginBeforeSuggection = async (req, res, next) => {
     const name = req.body.name;
 
-    if(!name){
+    if (!name) {
         return res.status(400).send({
-            message: "Please enter name"
+            message: "Please provide name"
         });
     }
 
-    const username = req.body.username;
+    const email = req.body.email;
 
-    if(!username){
+    if (!email) {
         return res.status(400).send({
-            message: "Please provide username"
+            message: "Please provide email"
         });
     }
 
-    const user = await User.findOne({username});
+    const user = await User.findOne({ email });
 
-    if(!user){
+    if (!user) {
         return res.status(400).send({
-            message: `User with username ${username} is not registered yet!`
+            message: `User with email " ${email}" is not registered yet!`
         });
     }
 
     const suggestion = req.body.suggestion;
 
-    if(!suggestion){
+    if (!suggestion) {
         return res.status(400).send({
             message: "Suggestion Box cannot be Empty!"
         })
