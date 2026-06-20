@@ -1,7 +1,7 @@
 const User = require("../models/user.models");
+const Suggestion = require("../models/suggestion.models.js");
 
-
-exports.getSuggestion = async (req, res)=>{
+exports.getSuggestion = async (req, res) => {
     const name = req.body.username;
     const username = req.body.username;
     const suggestion = req.body.suggestion;
@@ -9,10 +9,13 @@ exports.getSuggestion = async (req, res)=>{
         username
     });
 
-    if(user){
-        return res.status(201).send(suggestion);
+    if (user) {
+        const suggestionMessage = await Suggestion.create({ suggestion });
+        return res.status(201).send({
+            message: "Your suggestion submitted successfully!"
+        });
     }
-    return res.status(204).send({
+    return res.status(400).send({
         "message": "User not found "
     })
 };
