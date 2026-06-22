@@ -47,6 +47,19 @@ const verifyUserRequestbody = async (req, res, next) => {
         });
     }
 
+    const confirmPassword = req.body.confirmPassword;
+    if (!confirmPassword) {
+        return res.status(402).send({
+            message: "Confirm password field cannot be empty"
+        })
+    }
+
+    if (confirmPassword != password) {
+        return res.status(401).send({
+            message: "Confirm password and password is not matching"
+        })
+    }
+
     next();
 }
 
@@ -121,7 +134,7 @@ const verifyLoginBeforeSuggection = async (req, res, next) => {
         })
     }
 
-    const suggestions = await suggestionModels.find({email});
+    const suggestions = await suggestionModels.find({ email });
     if (suggestions.length > 2) {
         return res.status(401).send({
             message: "You can't submit more suggestion, you have reached the limilt of two suggestion"
@@ -137,5 +150,5 @@ module.exports = {
     verifyUserRequestbody: verifyUserRequestbody,
     verifyLoginUserBody: verifyLoginUserBody,
     verifyLoginBeforeSuggection: verifyLoginBeforeSuggection
-    
+
 }
