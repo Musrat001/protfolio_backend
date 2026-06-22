@@ -15,7 +15,7 @@ const router = express.Router();
 
 router.post("/register", [verifyUserRequestbody], createUser);
 router.post("/login", [verifyLoginUserBody], loginLogic);
-router.post("/suggestion", [verifyLoginBeforeSuggection, checkNumberOfSuggestion], getSuggestion);
+router.post("/suggestion/", [verifyLoginBeforeSuggection], getSuggestion);
 router.get("/users/:email", getNumberOfSuggestionByEmail);
 
 

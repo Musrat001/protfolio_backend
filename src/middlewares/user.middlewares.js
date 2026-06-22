@@ -121,23 +121,21 @@ const verifyLoginBeforeSuggection = async (req, res, next) => {
         })
     }
 
-    next();
-}
-
-
-const checkNumberOfSuggestion = async (req, res, next) => {
-    const suggestions = await suggestionModels.find();
+    const suggestions = await suggestionModels.find({email});
     if (suggestions.length > 2) {
         return res.status(401).send({
             message: "You can't submit more suggestion, you have reached the limilt of two suggestion"
         })
     }
+
     next();
 }
+
+
 
 module.exports = {
     verifyUserRequestbody: verifyUserRequestbody,
     verifyLoginUserBody: verifyLoginUserBody,
-    verifyLoginBeforeSuggection: verifyLoginBeforeSuggection,
-    checkNumberOfSuggestion: checkNumberOfSuggestion
+    verifyLoginBeforeSuggection: verifyLoginBeforeSuggection
+    
 }
