@@ -1,6 +1,6 @@
 const User = require("../models/user.models.js");
 
-const verifyUserRequestbody = (req, res, next) => {
+const verifyUserRequestbody = async (req, res, next) => {
     const fullName = req.body.fullName;
 
     if (!fullName) {
@@ -22,6 +22,19 @@ const verifyUserRequestbody = (req, res, next) => {
     if (!username) {
         return res.status(400).send({
             message: "Please provide username"
+        });
+    }
+
+    const userExits = await User.findOne({
+        $or: [
+            { email },
+            { username }
+        ]
+    });
+
+    if (userExits) {
+        return res.status(400).send({
+            message: `The email ${email} or usrname ${username} is already registered`
         });
     }
 
