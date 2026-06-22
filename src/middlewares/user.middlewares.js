@@ -93,8 +93,9 @@ const verifyLoginBeforeSuggection = async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-        return res.status(400).send({
-            message: `User with email " ${email}" is not registered yet!`
+        return res.status(404).send({
+            message: `User with email " ${email}" is not registered yet!.
+            Please register first.`
         });
     }
 
