@@ -1,14 +1,14 @@
 const express = require("express");
 const { createUser,
     getNumberOfSuggestionByEmail
-} = require("../controllers/user.controller");
+    } = require("../controllers/user.controller");
 const { loginLogic } = require("../controllers/login.controllers");
 const { getSuggestion } = require("../controllers/suggestion.controllers");
 const { verifyUserRequestbody,
     verifyLoginUserBody,
     verifyLoginBeforeSuggection,
     checkNumberOfSuggestion
-} = require("../middlewares/user.middlewares");
+    } = require("../middlewares/user.middlewares");
 
 
 const router = express.Router();
