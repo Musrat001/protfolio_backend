@@ -1,14 +1,18 @@
 const express = require("express");
+const { loginLogic } = require("../controllers/login.controllers");
+const { getSuggestion } = require("../controllers/suggestion.controllers");
 const { createUser,
     getNumberOfSuggestionByEmail
     } = require("../controllers/user.controller");
-const { loginLogic } = require("../controllers/login.controllers");
-const { getSuggestion } = require("../controllers/suggestion.controllers");
+
 const { verifyUserRequestbody,
     verifyLoginUserBody,
     verifyLoginBeforeSuggection,
     checkNumberOfSuggestion
     } = require("../middlewares/user.middlewares");
+
+const { setNewPassword } = require("../controllers/passwordReset.controllers");
+const { updatePassowrd } = require("../middlewares/updatePassword.middlewares");
 
 
 const router = express.Router();
@@ -17,6 +21,7 @@ router.post("/register", [verifyUserRequestbody], createUser);
 router.post("/login", [verifyLoginUserBody], loginLogic);
 router.post("/suggestion/", [verifyLoginBeforeSuggection], getSuggestion);
 router.get("/users/:email", getNumberOfSuggestionByEmail);
+router.put("/setPassword",[updatePassowrd] ,setNewPassword);
 
 
 
