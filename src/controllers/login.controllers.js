@@ -13,6 +13,12 @@ exports.loginLogic = async (req, res) => {
         password
     });
 
+    if(!user){
+        return res.status(402).send({
+            message: "invalid user"
+        })
+    }
+
 
     // generating access Token
     const accessToken = jwt.sign(
