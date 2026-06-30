@@ -5,14 +5,14 @@ exports.loginLogic = async (req, res) => {
     console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
-
+    console.log(process.env.ACCESS_TOKEN_SECRET);
 
     // finding user
     const user = await User.findOne({
         username,
         password
     });
-    console.log(process.env.ACCESS_TOKEN_SECRET);
+
 
     // generating access Token
     const accessToken = jwt.sign(
