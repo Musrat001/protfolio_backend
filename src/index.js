@@ -7,7 +7,9 @@ const express = require("express");
 const cors = require("cors");
 const cookiParser = require("cookie-parser")
 
-
+dotenv.config({
+    path: "./.env"
+});
 
 app.use(cookiParser());
 app.use(cors({
@@ -15,9 +17,7 @@ app.use(cors({
     credentials: true
 }));
 
-dotenv.config({
-    path: "./.env"
-});
+
 app.use(express.json());
 
 const userRoute = require("./routers/user.routes.js");
