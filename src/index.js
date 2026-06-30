@@ -11,7 +11,7 @@ const cookiParser = require("cookie-parser")
 
 app.use(cookiParser());
 app.use(cors({
-    origin: "https://protfolio-backend-45v7.onrender.com",
+    origin: "https://musrat001.github.io/portfolio_frontend/",
     credentials: true
 }));
 
