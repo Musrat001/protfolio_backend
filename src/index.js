@@ -11,7 +11,8 @@ const cookiParser = require("cookie-parser")
 
 app.use(cookiParser());
 app.use(cors({
-    origin: "*"
+    origin: "https://protfolio-backend-45v7.onrender.com",
+    credentials: true
 }));
 
 dotenv.config({
