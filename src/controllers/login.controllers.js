@@ -12,6 +12,7 @@ exports.loginLogic = async (req, res) => {
         username,
         password
     });
+    console.log(process.env.ACCESS_TOKEN_SECRET);
 
     // generating access Token
     const accessToken = jwt.sign(
