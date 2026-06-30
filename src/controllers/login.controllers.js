@@ -5,14 +5,14 @@ exports.loginLogic = async (req, res) => {
     console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
-    
+
 
     // finding user
     const user = await User.findOne({
         username,
         password
     });
-    
+
 
     // generating access Token
     const accessToken = jwt.sign(
@@ -28,8 +28,8 @@ exports.loginLogic = async (req, res) => {
 
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
-        secure: false,       
-        sameSite: "Lax",
+        secure: true,
+        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000
     });
 
