@@ -13,13 +13,14 @@ const { verifyUserRequestbody,
 
 const { setNewPassword } = require("../controllers/passwordReset.controllers");
 const { updatePassowrd } = require("../middlewares/updatePassword.middlewares");
+const { verifyJWT } = require("../middlewares/authJWT.middlewares");
 
 
 const router = express.Router();
 
 router.post("/register", [verifyUserRequestbody], createUser);
 router.post("/login", [verifyLoginUserBody], loginLogic);
-router.post("/suggestion/", [verifyLoginBeforeSuggection], getSuggestion);
+router.post("/suggestion/", [verifyLoginBeforeSuggection, verifyJWT], getSuggestion);
 router.get("/users/:email", getNumberOfSuggestionByEmail);
 router.put("/setPassword",[updatePassowrd] ,setNewPassword);
 

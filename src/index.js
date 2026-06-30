@@ -5,9 +5,11 @@ const dotenv = require("dotenv");
 const { app } = require("./app.js");
 const express = require("express");
 const cors = require("cors");
+const cookiParser = require("cookie-parser")
 
 
 
+app.use(cookiParser());
 app.use(cors({
     origin: "*"
 }));
