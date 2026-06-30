@@ -12,8 +12,10 @@ exports.loginLogic = async (req, res) => {
         username,
         password
     });
+    console.log(user);
 
-    if(!user){
+
+    if (!user) {
         return res.status(402).send({
             message: "invalid user"
         })
