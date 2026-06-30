@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
 const verifyJWT = async (req, res, next)=>{
-    const currentToken = req.headers["x-access-token"];
+    const currentToken = req.cookies.accessToken;;
     
     if(!currentToken){
         return res.status(401).json({
