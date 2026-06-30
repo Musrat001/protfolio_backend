@@ -32,7 +32,7 @@ exports.loginLogic = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000
     });
 
-    res.json({
+    return res.json({
         success: true,
         message: "Login successful",
         accessToken: accessToken,
