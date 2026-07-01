@@ -1,8 +1,11 @@
 const User = require("../models/user.models.js");
 const constant = require("../utils/constant.js")
 const jwt = require("jsonwebtoken")
+
+
 exports.loginLogic = async (req, res) => {
     console.log(req.body);
+
     const username = req.body.username;
     const password = req.body.password;
 
@@ -15,7 +18,6 @@ exports.loginLogic = async (req, res) => {
 
 
     // generating access Token
-    console.log("Setting cookie...");
     const accessToken = jwt.sign(
         {
             email: user.email
@@ -25,8 +27,8 @@ exports.loginLogic = async (req, res) => {
             expiresIn: 60
         }
     );
-    console.log("Cookie set");
-    console.log(res.getHeaders());
+    
+    
 
 
     res.cookie("accessToken", process.env.ACCESS_TOKEN_SECRET, {
@@ -36,7 +38,7 @@ exports.loginLogic = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
         success: true,
         message: "Login successful",
         accessToken: accessToken,
