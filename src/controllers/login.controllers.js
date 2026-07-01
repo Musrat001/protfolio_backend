@@ -18,7 +18,7 @@ exports.loginLogic = async (req, res) => {
 
 
     // generating access Token
-    const accessToken = await jwt.sign(
+    const accessToken =  jwt.sign(
         {
             email: user.email
         },
