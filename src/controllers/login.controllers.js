@@ -29,14 +29,14 @@ exports.loginLogic = async (req, res) => {
     console.log(res.getHeaders());
 
 
-    res.cookie("accessToken", accessToken, {
+    res.cookie("accessToken", process.env.ACCESS_TOKEN_SECRET, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000
     });
 
-    res.status(201).json({
+    return res.status(201).json({
         success: true,
         message: "Login successful",
         accessToken: accessToken,
