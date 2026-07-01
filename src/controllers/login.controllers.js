@@ -15,6 +15,7 @@ exports.loginLogic = async (req, res) => {
 
 
     // generating access Token
+    console.log("Setting cookie...");
     const accessToken = jwt.sign(
         {
             email: user.email
@@ -24,6 +25,8 @@ exports.loginLogic = async (req, res) => {
             expiresIn: 60
         }
     );
+    console.log("Cookie set");
+    console.log(res.getHeaders());
 
 
     res.cookie("accessToken", accessToken, {
