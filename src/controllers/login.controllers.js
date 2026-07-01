@@ -27,11 +27,11 @@ exports.loginLogic = async (req, res) => {
             expiresIn: 60
         }
     );
-    
-    
 
 
-    res.cookie("accessToken", process.env.ACCESS_TOKEN_SECRET, {
+
+
+    res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
