@@ -4,7 +4,7 @@ const verifyJWT = (req, res, next) => {
 
     console.log("Cookies:", req.cookies);
 
-    console.log("Access Token:", req.cookies.accessToken);
+    console.log("Access Token:", req.cookies);
 
     const currentToken = req.cookies.accessToken;
 
