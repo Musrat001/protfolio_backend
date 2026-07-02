@@ -7,6 +7,8 @@ const verifyJWT = (req, res, next) => {
     // console.log("Access Token:", req.cookies);
 
     const authToken = req.headers.authorization;
+    console.log(authToken);
+
 
     if (!authToken) {
         return res.status(401).json({
