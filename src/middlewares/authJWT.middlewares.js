@@ -17,14 +17,14 @@ const verifyJWT = (req, res, next) => {
     }
 
     if (!authToken.startsWith("Bearer ")) {
-        return res.status(401).json9({
+        return res.status(401).json({
             message: "Invalid Token formate"
         })
     }
 
     const token = authToken.split(" ")[1];
 
-    jwt.verify(tiken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
 
         // console.log("Cookie Header:", req.headers.cookie);
         // console.log("Parsed Cookies:", req.cookies);
