@@ -2,28 +2,36 @@ const jwt = require("jsonwebtoken");
 
 const verifyJWT = (req, res, next) => {
 
-    console.log("Cookies:", req.cookies);
+    // console.log("Cookies:", req.cookies);
 
-    console.log("Access Token:", req.cookies);
+    // console.log("Access Token:", req.cookies);
 
-    const currentToken = req.cookies.accessToken;
+    const authToken = req.headers.authorization;
 
-    if (!currentToken) {
+    if (!authToken) {
         return res.status(401).json({
-            message: "please provide access token"
+            message: "Authorization headers missing"
         });
     }
 
-    jwt.verify(currentToken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
+    if (!authToken.startsWith("Bearer ")) {
+        return res.status(401).json9({
+            message: "Invalid Token formate"
+        })
+    }
 
-        console.log("Cookie Header:", req.headers.cookie);
-        console.log("Parsed Cookies:", req.cookies);
+    const token = authToken.split(" ")[1];
+
+    jwt.verify(tiken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
+
+        // console.log("Cookie Header:", req.headers.cookie);
+        // console.log("Parsed Cookies:", req.cookies);
 
         if (error) {
             console.log(error);
 
             return res.status(401).json({
-                message: "Unauthorized access"
+                message: "Invalid  token or Token has expired"
             });
         }
 
